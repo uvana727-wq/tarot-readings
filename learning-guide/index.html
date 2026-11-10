@@ -1,0 +1,1192 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#e9e4d7">
+  <meta name="description" content="Короткий и понятный путеводитель по истории Таро и значениям всех 78 карт в отношениях, работе и личном развитии.">
+  <title>Таро без тумана — история и значения карт</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --paper: #f5f2e9;
+      --paper-deep: #e9e4d7;
+      --ink: #203d35;
+      --muted: #64746b;
+      --green: #346b55;
+      --green-dark: #23483c;
+      --orange: #c66b43;
+      --line: #d7d5c8;
+      --white: #fffdf8;
+      --serif: Georgia, "Times New Roman", serif;
+      --sans: "Segoe UI", Arial, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font: 16px/1.6 var(--sans);
+    }
+    button, input { font: inherit; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    a { color: inherit; }
+    .wrap { width: min(1120px, calc(100% - 48px)); margin-inline: auto; }
+    .skip-link {
+      position: absolute;
+      z-index: 20;
+      top: 8px;
+      left: 8px;
+      padding: 10px 14px;
+      transform: translateY(-150%);
+      background: var(--white);
+      color: var(--ink);
+    }
+    .skip-link:focus { transform: none; }
+    .topbar {
+      position: sticky;
+      z-index: 5;
+      top: 0;
+      border-bottom: 1px solid rgba(32,61,53,.12);
+      background: rgba(245,242,233,.94);
+      backdrop-filter: blur(12px);
+    }
+    .nav {
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+    .nav-tools { display: flex; align-items: center; gap: 24px; }
+    .brand {
+      font: 1.18rem var(--serif);
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .brand b { color: var(--orange); font-weight: 400; }
+    .nav-links { display: flex; gap: 28px; align-items: center; }
+    .nav-links a {
+      color: var(--muted);
+      font-size: .88rem;
+      text-decoration: none;
+    }
+    .nav-links a:hover, .nav-links a:focus-visible { color: var(--green); }
+    .view-tabs { display: flex; gap: 5px; padding: 4px; background: #e8e5da; }
+    .view-tab {
+      min-height: 36px;
+      padding: 6px 12px;
+      border: 0;
+      background: transparent;
+      color: var(--muted);
+      cursor: pointer;
+      font-size: .82rem;
+      white-space: nowrap;
+    }
+    .view-tab[aria-selected="true"] { background: var(--green-dark); color: var(--white); }
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 88px 0 94px;
+      background:
+        radial-gradient(ellipse at 86% 16%, rgba(198,107,67,.12), transparent 30%),
+        radial-gradient(ellipse at 12% 100%, rgba(52,107,85,.12), transparent 33%),
+        var(--paper-deep);
+    }
+    .hero::after {
+      content: "✳";
+      position: absolute;
+      right: max(4%, calc((100% - 1120px) / 2));
+      top: 10px;
+      color: rgba(52,107,85,.11);
+      font: 25rem/.9 var(--serif);
+      pointer-events: none;
+    }
+    .hero-inner { position: relative; z-index: 1; max-width: 760px; }
+    .eyebrow {
+      color: var(--green);
+      font-size: .74rem;
+      font-weight: 700;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 {
+      max-width: 730px;
+      margin: 16px 0 18px;
+      font: 400 clamp(3.2rem, 8vw, 6.4rem)/.98 var(--serif);
+      letter-spacing: -.05em;
+    }
+    h1 em { color: var(--green); font-weight: 400; }
+    .hero p { max-width: 570px; color: #53665c; font-size: 1.08rem; }
+    .hero-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 14px 22px; margin-top: 28px; }
+    .button {
+      display: inline-flex;
+      min-height: 49px;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      padding: 0 19px;
+      border: 1px solid var(--green-dark);
+      background: var(--green-dark);
+      color: var(--white);
+      font-size: .9rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background .2s ease, color .2s ease, transform .2s ease;
+    }
+    .button:hover { transform: translateY(-2px); background: transparent; color: var(--green-dark); }
+    .hero-note { margin: 0; color: var(--muted); font-size: .82rem !important; }
+    .section { padding: 82px 0; }
+    .section-heading { max-width: 690px; margin-bottom: 34px; }
+    .section-heading h2 {
+      margin: 9px 0 12px;
+      font: 400 clamp(2.2rem, 5vw, 3.7rem)/1.07 var(--serif);
+      letter-spacing: -.035em;
+    }
+    .section-heading p { color: var(--muted); margin-bottom: 0; }
+    .history { background: var(--white); }
+    .history-layout { display: grid; grid-template-columns: .8fr 1.2fr; gap: 76px; align-items: start; }
+    .history-title {
+      margin: 10px 0 16px;
+      font: 400 clamp(2.2rem, 5vw, 3.7rem)/1.07 var(--serif);
+      letter-spacing: -.035em;
+    }
+    .history-copy > p { color: var(--muted); }
+    .history-copy > p:last-of-type { margin-bottom: 0; }
+    .history-aside {
+      padding: 26px;
+      border: 1px solid var(--line);
+      background: var(--paper);
+      margin-top: 24px;
+    }
+    .history-aside .big-number { display: block; color: var(--orange); font: 4.5rem/.95 var(--serif); }
+    .history-aside p { margin: 17px 0 0; color: var(--muted); font-size: .9rem; }
+    .timeline { border-left: 1px solid var(--line); }
+    .era { position: relative; padding: 0 0 28px 25px; }
+    .era:last-child { padding-bottom: 0; }
+    .era::before {
+      position: absolute;
+      top: 7px;
+      left: -5px;
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--orange);
+      content: "";
+    }
+    .era time { color: var(--green); font-size: .77rem; font-weight: 700; letter-spacing: .08em; }
+    .era h3 { margin: 5px 0 6px; font: 400 1.35rem var(--serif); }
+    .era p { margin: 0; color: var(--muted); font-size: .9rem; }
+    .suits { background: var(--green-dark); color: var(--paper); }
+    .suits .eyebrow { color: #dfb785; }
+    .suits .section-heading p { color: #bdc9bd; }
+    .suit-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+    .suit-card { min-height: 205px; padding: 22px; border: 1px solid rgba(245,242,233,.22); }
+    .suit-symbol { color: #dfb785; font: 2rem var(--serif); }
+    .suit-card h3 { margin: 13px 0 6px; font: 400 1.4rem var(--serif); }
+    .suit-card p { margin: 0; color: #c7d0c7; font-size: .86rem; }
+    .catalog { padding-bottom: 96px; }
+    .catalog-head { display: flex; justify-content: space-between; align-items: end; gap: 24px; }
+    .catalog-head .section-heading { margin-bottom: 0; }
+    .count {
+      flex: 0 0 auto;
+      padding-bottom: 7px;
+      color: var(--muted);
+      font-size: .85rem;
+    }
+    .controls { margin: 30px 0 26px; }
+    .search-label { display: block; margin-bottom: 8px; font-size: .82rem; font-weight: 700; }
+    .search-box { position: relative; max-width: 620px; }
+    .search-box::before {
+      position: absolute;
+      top: 50%;
+      left: 15px;
+      color: var(--muted);
+      content: "⌕";
+      font: 1.55rem/1 var(--serif);
+      transform: translateY(-54%);
+    }
+    .search-box input {
+      width: 100%;
+      min-height: 51px;
+      padding: 0 16px 0 45px;
+      border: 1px solid #c9cdbf;
+      border-radius: 0;
+      outline: none;
+      background: var(--white);
+      color: var(--ink);
+    }
+    .search-box input:focus { border-color: var(--green); box-shadow: 0 0 0 3px rgba(52,107,85,.13); }
+    .filters { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 14px; }
+    .filter {
+      min-height: 37px;
+      padding: 6px 13px;
+      border: 1px solid #c9cdbf;
+      border-radius: 999px;
+      background: transparent;
+      color: var(--muted);
+      cursor: pointer;
+      font-size: .82rem;
+      transition: background .15s ease, border-color .15s ease, color .15s ease;
+    }
+    .filter:hover { border-color: var(--green); color: var(--green); }
+    .filter[aria-pressed="true"] { border-color: var(--green-dark); background: var(--green-dark); color: white; }
+    .card-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+    .tarot-tile {
+      position: relative;
+      min-height: 150px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 18px;
+      border: 1px solid var(--line);
+      background: var(--white);
+      color: var(--ink);
+      cursor: pointer;
+      text-align: left;
+      transition: border-color .18s ease, transform .18s ease, box-shadow .18s ease;
+    }
+    .tarot-tile:hover, .tarot-tile:focus-visible {
+      transform: translateY(-3px);
+      border-color: var(--green);
+      box-shadow: 0 8px 22px rgba(32,61,53,.08);
+    }
+    .tile-top { width: 100%; display: flex; justify-content: space-between; align-items: center; color: var(--orange); font: .9rem var(--serif); }
+    .tile-category { color: var(--muted); font: 700 .62rem var(--sans); letter-spacing: .08em; text-transform: uppercase; }
+    .tarot-tile strong { margin: 17px 0 7px; font: 400 1.25rem/1.15 var(--serif); }
+    .tile-hint { color: var(--muted); font-size: .77rem; line-height: 1.4; }
+    .empty-state { grid-column: 1/-1; padding: 45px 20px; border: 1px dashed var(--line); color: var(--muted); text-align: center; }
+    .empty-state strong { display: block; margin-bottom: 5px; color: var(--ink); font: 1.35rem var(--serif); }
+    .closing { padding: 0 0 90px; }
+    .closing-box {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 28px;
+      padding: 32px;
+      background: #e8eee5;
+    }
+    .closing-box p { max-width: 670px; margin: 0; color: #52665a; }
+    .closing-box strong { color: var(--ink); font: 1.35rem var(--serif); }
+    footer { padding: 23px 0; border-top: 1px solid var(--line); color: var(--muted); font-size: .78rem; }
+    .footer-row { display: flex; justify-content: space-between; gap: 20px; }
+    dialog {
+      width: min(620px, calc(100% - 28px));
+      max-height: min(85vh, 760px);
+      padding: 0;
+      border: 1px solid #c9cdbf;
+      background: var(--paper);
+      color: var(--ink);
+      box-shadow: 0 22px 80px rgba(17,35,29,.28);
+    }
+    dialog::backdrop { background: rgba(22,39,33,.62); backdrop-filter: blur(3px); }
+    .dialog-inner { padding: clamp(24px, 6vw, 42px); }
+    .dialog-head { display: flex; justify-content: space-between; gap: 20px; align-items: start; }
+    .dialog-number { color: var(--orange); font: 1rem var(--serif); }
+    .dialog-title { margin: 8px 0 5px; font: 400 clamp(2rem, 6vw, 3.1rem)/1.06 var(--serif); }
+    .dialog-category { color: var(--muted); font-size: .72rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+    .dialog-close {
+      flex: 0 0 auto;
+      width: 38px;
+      height: 38px;
+      border: 1px solid var(--line);
+      background: transparent;
+      color: var(--ink);
+      cursor: pointer;
+      font-size: 1.2rem;
+    }
+    .dialog-meaning { margin: 24px 0 22px; padding: 16px 18px; border-left: 3px solid var(--orange); background: var(--white); font: 1.13rem/1.5 var(--serif); }
+    .meaning-list { display: grid; gap: 15px; }
+    .meaning-item { padding-top: 13px; border-top: 1px solid var(--line); }
+    .meaning-item h3 { margin: 0 0 4px; color: var(--green); font-size: .75rem; letter-spacing: .06em; text-transform: uppercase; }
+    .meaning-item p { margin: 0; color: #53665c; font-size: .92rem; }
+    .dialog-answer { margin: 0 0 16px; padding: 13px 16px; border-left: 3px solid var(--green); background: #e8eee5; color: var(--ink); font-size: .9rem; }
+    .dialog-answer strong { font: 400 1.2rem var(--serif); }
+    .dialog-caveat { margin: 0 0 18px; color: var(--muted); font-size: .78rem; }
+    .dialog-footer { margin: 22px 0 0; color: var(--muted); font-size: .77rem; }
+    :focus-visible { outline: 3px solid rgba(198,107,67,.65); outline-offset: 3px; }
+    .reading-view { min-height: calc(100vh - 72px); padding: 70px 0 90px; background: var(--paper); scroll-margin-top: 90px; }
+    .reading-layout { display: grid; grid-template-columns: minmax(0, .8fr) minmax(340px, 1fr); gap: 54px; align-items: start; }
+    .reading-intro { max-width: 470px; }
+    .reading-intro h1 { margin: 11px 0 14px; font-size: clamp(2.7rem, 5vw, 4.5rem); }
+    .reading-intro > p { color: var(--muted); }
+    .question-form { display: grid; gap: 13px; margin-top: 27px; }
+    .question-form label { display: block; margin-bottom: 6px; font-size: .84rem; font-weight: 700; }
+    .question-form textarea, .question-form select {
+      width: 100%;
+      min-height: 48px;
+      padding: 11px 13px;
+      border: 1px solid #c9cdbf;
+      border-radius: 0;
+      outline: none;
+      background: var(--white);
+      color: var(--ink);
+    }
+    .question-form textarea { min-height: 94px; resize: vertical; }
+    .question-form textarea:focus, .question-form select:focus { border-color: var(--green); box-shadow: 0 0 0 3px rgba(52,107,85,.13); }
+    .privacy-note { margin: 0; color: var(--muted); font-size: .75rem; }
+    .carousel-shell { padding: 25px; border: 1px solid var(--line); background: var(--white); }
+    .carousel-heading { display: flex; justify-content: space-between; gap: 12px; align-items: center; margin-bottom: 15px; }
+    .carousel-heading h2 { margin: 0; font: 400 1.25rem var(--serif); }
+    .carousel-count { color: var(--muted); font-size: .8rem; font-variant-numeric: tabular-nums; }
+    .card-carousel {
+      position: relative;
+      min-height: 390px;
+      overflow: hidden;
+      padding: 14px 0;
+      border: 1px dashed #c9cdbf;
+      background: radial-gradient(circle, #faf9f4, #f2f0e8 70%);
+      cursor: grab;
+      touch-action: pan-y;
+      user-select: none;
+    }
+    .card-carousel:active { cursor: grabbing; }
+    .card-carousel:focus-visible { outline-offset: -4px; }
+    .wheel-stage {
+      position: relative;
+      width: 100%;
+      height: 360px;
+      --wheel-radius: clamp(86px, calc((100vw - 120px) / 2 - 20px), 150px);
+      transform: rotate(0deg);
+      transition: transform 120ms linear;
+      will-change: transform;
+    }
+    .wheel-stage.is-spinning {
+      transition-duration: 1900ms;
+      transition-timing-function: cubic-bezier(.12,.74,.16,1);
+    }
+    .wheel-stage.is-dragging { transition: none; }
+    .wheel-stage::before {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: calc(var(--wheel-radius) * 2 + 34px);
+      aspect-ratio: 1;
+      border: 1px solid rgba(195,147,85,.48);
+      border-radius: 50%;
+      box-shadow: 0 0 0 8px rgba(49,92,77,.035), inset 0 0 0 8px rgba(49,92,77,.035);
+      content: "";
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+    .wheel-stage::after {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      display: grid;
+      width: 55px;
+      aspect-ratio: 1;
+      place-items: center;
+      border: 1px solid rgba(195,147,85,.55);
+      border-radius: 50%;
+      background: #f7f4eb;
+      box-shadow: 0 3px 12px rgba(32,61,53,.12);
+      color: #b4864e;
+      content: "✧";
+      font: 1.8rem/1 var(--serif);
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+    .wheel-card {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: clamp(7px, calc(var(--wheel-radius) * .075), 11px);
+      height: clamp(15px, calc(var(--wheel-radius) * .15), 22px);
+      margin: calc(clamp(15px, calc(var(--wheel-radius) * .15), 22px) / -2) 0 0 calc(clamp(7px, calc(var(--wheel-radius) * .075), 11px) / -2);
+      border: 1px solid #dfc28e;
+      border-radius: 2px;
+      background:
+        repeating-linear-gradient(45deg, rgba(247,238,220,.13) 0 1px, transparent 1px 3px),
+        linear-gradient(145deg, #315c4d, #203f36 65%, #284c40);
+      box-shadow: 0 1px 3px rgba(32,61,53,.18);
+      transform: rotate(var(--angle)) translateY(calc(-1 * var(--wheel-radius))) rotate(calc(-1 * var(--angle)));
+      transform-origin: center;
+      pointer-events: none;
+    }
+    .wheel-card::after {
+      position: absolute;
+      inset: 2px;
+      border: 1px solid rgba(230,200,148,.55);
+      border-radius: 1px;
+      content: "";
+    }
+    .wheel-instruction {
+      margin: 12px 0 0;
+      color: var(--muted);
+      font-size: .76rem;
+      text-align: center;
+    }
+    .carousel-controls { display: flex; justify-content: center; align-items: center; gap: 15px; margin-top: 17px; }
+    .carousel-arrow {
+      width: 44px;
+      height: 44px;
+      border: 1px solid var(--line);
+      background: var(--white);
+      color: var(--ink);
+      cursor: pointer;
+      font-size: 1.2rem;
+    }
+    .carousel-arrow:hover { border-color: var(--green); color: var(--green); }
+    .carousel-help { margin: 12px 0 0; color: var(--muted); font-size: .74rem; text-align: center; }
+    .carousel-confirm { display: flex; justify-content: center; margin-top: 15px; }
+    .carousel-confirm button:disabled { border-color: #b7c0b5; background: #d7ddd4; color: #53665c; cursor: not-allowed; transform: none; }
+    .carousel-status { margin: 10px 0 0; color: var(--muted); font-size: .78rem; text-align: center; }
+    .visually-hidden {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+    .reading-result { margin-top: 20px; padding: 22px; border-left: 3px solid var(--orange); background: #f0eee5; scroll-margin-top: 90px; }
+    .reading-result h2 { margin: 0 0 10px; font: 400 1.65rem var(--serif); }
+    .reading-result p { margin: 0 0 12px; color: #53665c; font-size: .9rem; }
+    .reading-result p:last-child { margin-bottom: 0; }
+    .reading-result strong { color: var(--ink); }
+    .reading-result .answer-verdict { color: var(--green-dark); font-size: 1rem; font-weight: 700; }
+    .reading-result .answer-note { color: var(--muted); font-size: .76rem; }
+    [hidden] { display: none !important; }
+
+    @media (max-width: 850px) {
+      .history-layout { gap: 36px; }
+      .suit-grid { grid-template-columns: repeat(2, 1fr); }
+      .card-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .reading-layout { grid-template-columns: 1fr; gap: 34px; }
+      .reading-intro { max-width: 650px; }
+      .carousel-shell { max-width: 650px; }
+    }
+    @media (max-width: 760px) {
+      .nav { min-height: 62px; flex-wrap: wrap; gap: 8px 12px; padding: 10px 0; }
+      .brand { font-size: 1.05rem; }
+      .nav-tools { margin-left: auto; }
+      .view-tabs { gap: 2px; padding: 3px; }
+      .view-tab { min-height: 33px; padding: 5px 8px; font-size: .74rem; }
+      .nav-links { order: 2; width: 100%; justify-content: space-between; gap: 10px; }
+      .nav-links a { font-size: .76rem; }
+    }
+    @media (max-width: 620px) {
+      .wrap { width: min(100% - 34px, 520px); }
+      .hero { padding: 72px 0 75px; }
+      .hero::after { right: -55px; top: 30px; font-size: 18rem; }
+      .hero p { font-size: 1rem; }
+      .section { padding: 66px 0; }
+      .history-layout { grid-template-columns: 1fr; gap: 32px; }
+      .history-aside { margin-top: 22px; }
+      .suit-grid { gap: 9px; }
+      .suit-card { min-height: 0; padding: 17px; }
+      .catalog-head { align-items: start; }
+      .count { padding-top: 9px; white-space: nowrap; font-size: .75rem; }
+      .card-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 9px; }
+      .tarot-tile { min-height: 138px; padding: 14px; }
+      .tarot-tile strong { font-size: 1.1rem; }
+      .closing-box { align-items: flex-start; flex-direction: column; padding: 23px; }
+      .footer-row { flex-direction: column; gap: 4px; }
+      .reading-view { padding: 48px 0 65px; }
+      .carousel-shell { padding: 15px; }
+      .card-carousel { min-height: 365px; padding: 8px 0; }
+      .wheel-stage { height: 340px; }
+      .reading-result { padding: 18px; }
+    }
+    @media (max-width: 380px) {
+      .nav-links { gap: 9px; }
+      .nav-links a { font-size: .72rem; }
+      .suit-card { padding: 13px; }
+      .suit-card h3 { font-size: 1.2rem; }
+      .tile-category { font-size: .55rem; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Перейти к содержанию</a>
+  <header class="topbar">
+    <nav class="nav wrap" aria-label="Основная навигация">
+      <a class="brand" href="#top">Таро <b>без тумана</b></a>
+      <div class="nav-tools">
+        <div class="view-tabs" role="tablist" aria-label="Раздел сайта">
+          <button class="view-tab" id="guide-tab" type="button" role="tab" aria-selected="true" aria-controls="guide-view" tabindex="0">Путеводитель</button>
+          <button class="view-tab" id="question-tab" type="button" role="tab" aria-selected="false" aria-controls="question-view" tabindex="-1">Задать вопрос</button>
+        </div>
+      </div>
+      <div class="nav-links">
+        <a href="#history">История</a>
+        <a href="#suits">Масти</a>
+        <a href="#cards">Значения карт</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main">
+    <div id="guide-view" role="tabpanel" aria-labelledby="guide-tab" tabindex="0">
+    <section class="hero" id="top">
+      <div class="hero-inner wrap">
+        <span class="eyebrow">Понятный путеводитель по Таро</span>
+        <h1>Символы,<br>которые <em>говорят.</em></h1>
+        <p>Коротко знакомимся с историей Таро и разбираем все 78 карт: что они могут подсказать об отношениях, делах и внутреннем пути.</p>
+        <div class="hero-actions">
+          <a class="button" href="#cards">Найти значение <span aria-hidden="true">↓</span></a>
+          <p class="hero-note">Без сложных терминов и обещаний предсказать будущее.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="history section" id="history">
+      <div class="wrap history-layout">
+        <div class="history-copy">
+          <span class="eyebrow">В двух словах</span>
+          <h2 class="history-title">От игры к языку символов</h2>
+          <p>История Таро — это не одна тайная традиция, а несколько разных эпох. Сначала карты были игрой; привычное гадательное и символическое прочтение сложилось намного позже.</p>
+          <p>Современная колода обычно состоит из 22 Старших и 56 Младших арканов. Слово «аркан» здесь просто означает карту в системе Таро.</p>
+          <aside class="history-aside" aria-label="Краткая хронология Таро">
+            <span class="big-number">600+</span>
+            <p>лет насчитывает история известных европейских карт Таро — задолго до их эзотерического прочтения.</p>
+          </aside>
+        </div>
+        <div class="timeline">
+          <article class="era">
+            <time>XV ВЕК · ИТАЛИЯ</time>
+            <h3>Карты для игры</h3>
+            <p>Самые ранние сохранившиеся колоды появились в Северной Италии. Таро, тогда известное как тарокки, было карточной игрой для знати.</p>
+          </article>
+          <article class="era">
+            <time>XVIII ВЕК · ФРАНЦИЯ</time>
+            <h3>Новый слой значений</h3>
+            <p>Французские авторы связали карты с эзотерическими идеями. Так постепенно возникло гадательное толкование — не первоначальное назначение колоды.</p>
+          </article>
+          <article class="era">
+            <time>1909 ГОД</time>
+            <h3>Колода Райдера — Уэйта — Смит</h3>
+            <p>Художница Памела Колман Смит создала выразительные сцены для всех карт колоды под руководством Артура Уэйта. Её образы сильно повлияли на современные трактовки.</p>
+          </article>
+          <article class="era">
+            <time>СЕГОДНЯ</time>
+            <h3>Символы для размышления</h3>
+            <p>Таро читают по-разному: как духовную практику, игру с образами или способ взглянуть на вопрос с новой стороны. Единственного «официального» значения нет.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="suits section" id="suits">
+      <div class="wrap">
+        <div class="section-heading">
+          <span class="eyebrow">Младшие арканы</span>
+          <h2>Четыре масти — четыре темы</h2>
+          <p>Масть задаёт область жизни, а номер и изображение уточняют сюжет. Это удобная отправная точка, а не строгий словарь.</p>
+        </div>
+        <div class="suit-grid">
+          <article class="suit-card"><span class="suit-symbol" aria-hidden="true">♧</span><h3>Жезлы</h3><p>Огонь, импульс и действие. Инициатива, творчество, амбиции и то, что зажигает интерес.</p></article>
+          <article class="suit-card"><span class="suit-symbol" aria-hidden="true">♡</span><h3>Кубки</h3><p>Вода, чувства и связь. Эмоции, отношения, интуиция и способность принимать переживания.</p></article>
+          <article class="suit-card"><span class="suit-symbol" aria-hidden="true">⚔</span><h3>Мечи</h3><p>Воздух, мысль и выбор. Общение, решения, убеждения и ситуации, требующие ясности.</p></article>
+          <article class="suit-card"><span class="suit-symbol" aria-hidden="true">◇</span><h3>Пентакли</h3><p>Земля, тело и быт. Работа, деньги, навыки, устойчивость и практические результаты.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="catalog section" id="cards">
+      <div class="wrap">
+        <div class="catalog-head">
+          <div class="section-heading">
+            <span class="eyebrow">Справочник</span>
+            <h2>Значения 78 карт</h2>
+            <p>Выберите карту, чтобы увидеть короткое общее значение и возможные прочтения в разных сферах.</p>
+          </div>
+          <span class="count" id="result-count" aria-live="polite"></span>
+        </div>
+        <div class="controls">
+          <label class="search-label" for="card-search">Поиск по названию или смыслу</label>
+          <div class="search-box">
+            <input id="card-search" type="search" placeholder="Например: перемены, близость, выбор…" autocomplete="off">
+          </div>
+          <div class="filters" role="group" aria-label="Фильтр по группе карт">
+            <button class="filter" type="button" data-filter="all" aria-pressed="true">Все карты</button>
+            <button class="filter" type="button" data-filter="major" aria-pressed="false">Старшие арканы</button>
+            <button class="filter" type="button" data-filter="Жезлы" aria-pressed="false">Жезлы</button>
+            <button class="filter" type="button" data-filter="Кубки" aria-pressed="false">Кубки</button>
+            <button class="filter" type="button" data-filter="Мечи" aria-pressed="false">Мечи</button>
+            <button class="filter" type="button" data-filter="Пентакли" aria-pressed="false">Пентакли</button>
+          </div>
+        </div>
+        <div class="card-grid" id="card-grid" aria-label="Карты Таро"></div>
+      </div>
+    </section>
+
+    <section class="closing wrap">
+      <div class="closing-box">
+        <p><strong>Как читать значения?</strong><br>Начните с общего смысла, затем соотнесите его с вопросом и контекстом расклада. Карта предлагает тему для размышления, а не сообщает проверенный факт о будущем.</p>
+        <a class="button" href="#cards">К картам <span aria-hidden="true">↑</span></a>
+      </div>
+    </section>
+    </div>
+
+    <section class="reading-view" id="question-view" role="tabpanel" aria-labelledby="question-tab" tabindex="0" hidden>
+      <div class="wrap reading-layout">
+        <div class="reading-intro">
+          <span class="eyebrow">Личный выбор карты</span>
+          <h1>Задайте вопрос и найдите свою карту.</h1>
+          <p>Сформулируйте вопрос, выберите сферу и листайте закрытую колоду. Нажмите кнопку, чтобы запустить вращение и вытянуть одну случайную карту из всех 78.</p>
+          <p class="privacy-note">Во время прокрутки все карты остаются закрытыми. Случайная карта и её трактовка откроются только после вашего нажатия. Ориентир «да / нет» — условная учебная схема, а не достоверный ответ или предсказание.</p>
+          <div class="question-form" id="question-form">
+            <div>
+              <label for="visitor-question">Ваш вопрос</label>
+              <textarea id="visitor-question" name="question" placeholder="Например: на что мне обратить внимание в новом деле?" required></textarea>
+            </div>
+            <div>
+              <label for="reading-area">Какая сфера ближе?</label>
+              <select id="reading-area" name="area">
+                <option value="love">Отношения</option>
+                <option value="work">Работа и дела</option>
+                <option value="reflection">Личный путь</option>
+              </select>
+            </div>
+            <p class="privacy-note">Вопрос остаётся в этом браузере: сайт его никуда не отправляет и не сохраняет.</p>
+          </div>
+        </div>
+
+        <div class="carousel-shell">
+          <div class="carousel-heading">
+            <h2>Колесо из 78 карт</h2>
+            <span class="carousel-count" id="carousel-count">78 карт</span>
+          </div>
+          <div class="card-carousel" id="card-carousel" role="group" aria-label="Просмотр карт Таро" aria-describedby="carousel-help" tabindex="0">
+            <div class="wheel-stage" id="wheel-stage" aria-hidden="true"></div>
+          </div>
+          <p class="wheel-instruction" id="wheel-instruction">Колода закрыта. Прокрутите её или нажмите кнопку, чтобы вытянуть случайную карту.</p>
+          <p class="visually-hidden" id="wheel-announcer" role="status" aria-live="polite">Колода из 78 карт закрыта. Карта откроется после нажатия кнопки вытягивания.</p>
+          <div class="carousel-controls" aria-label="Перелистывание колоды">
+            <button class="carousel-arrow" id="card-previous" type="button" aria-label="Предыдущая карта">←</button>
+            <button class="carousel-arrow" id="card-next" type="button" aria-label="Следующая карта">→</button>
+          </div>
+          <p class="carousel-help" id="carousel-help">Крутите колесо мыши или тачпада над колодой, нажимайте ← / → или проведите по картам.</p>
+          <div class="carousel-confirm">
+            <button class="button" id="confirm-card" type="button">Вытянуть случайную карту</button>
+          </div>
+          <p class="carousel-status" id="carousel-status" aria-live="polite">Колода закрыта. Вытянуть карту можно только нажатием кнопки.</p>
+          <section class="reading-result" id="reading-result" aria-live="polite" aria-labelledby="reading-result-title" hidden>
+            <h2 id="reading-result-title"></h2>
+            <p id="result-question"></p>
+            <p id="result-answer" class="answer-verdict"></p>
+            <p id="result-meaning"></p>
+            <p id="result-answer-context"></p>
+            <p class="answer-note">Это справочное значение карты, а не ответ на вопрос, установленный факт, прогноз или гарантия исхода. Трактовки различаются между традициями.</p>
+          </section>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-row">
+      <span>Таро без тумана · путеводитель и интерактивная колода</span>
+      <span>Трактовки символические и могут различаться в разных традициях.</span>
+    </div>
+  </footer>
+
+  <dialog id="card-dialog" aria-labelledby="dialog-title">
+    <div class="dialog-inner">
+      <div class="dialog-head">
+        <div>
+          <span class="dialog-number" id="dialog-number"></span>
+          <h2 class="dialog-title" id="dialog-title"></h2>
+          <span class="dialog-category" id="dialog-category"></span>
+        </div>
+        <button class="dialog-close" type="button" aria-label="Закрыть описание карты">×</button>
+      </div>
+      <p class="dialog-meaning" id="dialog-meaning"></p>
+      <p class="dialog-answer"><strong>Условный ориентир «да / нет» в этой схеме: <span id="dialog-answer"></span></strong></p>
+      <p class="dialog-caveat">Это не ответ на вопрос и не единый стандарт Таро. У карт нет проверяемой системы предсказаний; трактовки зависят от традиции.</p>
+      <div class="meaning-list" id="meaning-list"></div>
+      <p class="dialog-footer">Ориентир для размышления, не предсказание и не замена профессиональной консультации.</p>
+    </div>
+  </dialog>
+
+  <script>
+    const major = [
+      ["Шут","✧","Начало пути, открытость новому и готовность сделать шаг без полной карты маршрута.","Свежесть чувств и спонтанность; важно сохранять личные границы.","Новый проект или проба непривычной роли. Проверьте риски, прежде чем прыгать.","Что я могу попробовать, не требуя от себя идеального плана?"],
+      ["Маг","Ⅰ","Инициатива, умение соединить имеющиеся ресурсы и перейти от идеи к действию.","Честный разговор и активное участие в отношениях.","Навык, который пора применить; хорошее время для конкретного первого шага.","Какие возможности уже у меня под рукой?"],
+      ["Верховная Жрица","Ⅱ","Тишина, наблюдение и знание, которому нужно время, чтобы стать ясным.","Не торопить близость; прислушаться к чувствам, не выдавая догадку за факт.","Сбор информации и изучение скрытых деталей, прежде чем принимать решение.","Что я замечаю, когда перестаю спешить с выводом?"],
+      ["Императрица","Ⅲ","Рост, забота, чувственность и условия, в которых может созреть идея.","Тепло и внимание к взаимным потребностям.","Плодотворное развитие проекта; ценность устойчивого темпа и заботы о ресурсе.","Что нуждается в заботе, чтобы принести плоды?"],
+      ["Император","Ⅳ","Структура, ответственность и ясные правила, на которые можно опереться.","Надёжность и договорённости; важно не путать заботу с контролем.","План, организация и лидерство, основанные на ответственности.","Какая опора или граница сделала бы ситуацию устойчивее?"],
+      ["Иерофант","Ⅴ","Традиция, обучение и поиск смысла через общие ценности или наставничество.","Разговор о ценностях и ожиданиях друг от друга.","Обучение, профессиональные стандарты или помощь опытного человека.","Чьим знаниям я доверяю — и почему?"],
+      ["Влюблённые","Ⅵ","Выбор по совести, близость и согласование решения с важными ценностями.","Взаимность, притяжение и честное решение о направлении связи.","Партнёрство или выбор между возможностями, соответствующими вашим принципам.","Что для меня важнее всего в этом выборе?"],
+      ["Колесница","Ⅶ","Движение к цели благодаря фокусу и умению направлять противоречивые силы.","Совместное движение возможно, если оба уважают направление и темп друг друга.","Настойчивый прогресс; помогает приоритет, а не попытка делать всё сразу.","Куда я направляю свою энергию — и что отвлекает?"],
+      ["Сила","Ⅷ","Спокойное мужество, терпение и бережное обращение с сильными чувствами.","Мягкость, доверие и способность говорить о сложном без давления.","Устойчивость под нагрузкой и влияние через самообладание.","Как я могу проявить твёрдость, не подавляя себя или других?"],
+      ["Отшельник","Ⅸ","Пауза, самостоятельный поиск и мудрость, рождающаяся в тишине.","Потребность в личном пространстве и время понять свои желания.","Углублённая работа, исследование или поиск собственного профессионального пути.","Какой ответ я услышу, если дам себе время?"],
+      ["Колесо Фортуны","Ⅹ","Перемена обстоятельств, циклы и факторы, которые не полностью зависят от нас.","Изменение привычной динамики; гибкость полезнее попытки всё контролировать.","Новый цикл или смена условий; замечайте возможности и сохраняйте запасной план.","Что сейчас меняется — и на что я всё-таки могу повлиять?"],
+      ["Справедливость","Ⅺ","Равновесие, последствия поступков и стремление увидеть ситуацию беспристрастно.","Честность, взаимная ответственность и ясные границы.","Объективная оценка, документы и решения с понятными последствиями.","Какие факты и обязательства важно учесть?"],
+      ["Повешенный","Ⅻ","Пауза, смена перспективы и готовность временно отпустить привычный контроль.","Не форсировать ответ; попробовать понять ситуацию с другой стороны.","Задержка или пересмотр подхода; полезно проверить, оправданы ли прежние усилия.","Что станет видно, если посмотреть на вопрос иначе?"],
+      ["Смерть","ⅩⅢ","Завершение важного этапа и освобождение места для перемен; обычно не буквальная смерть.","Изменение формы отношений или прощание с тем, что уже исчерпано.","Закрытие проекта, роли или метода работы и переход к новому этапу.","Что пора завершить, чтобы двигаться дальше?"],
+      ["Умеренность","ⅩⅣ","Мера, постепенное восстановление и соединение различий без спешки.","Терпеливый диалог и поиск комфортного для двоих ритма.","Сбалансированный темп, сотрудничество и аккуратное улучшение процесса.","Какой небольшой шаг поможет вернуть равновесие?"],
+      ["Дьявол","ⅩⅤ","Привязанности, искушения и привычные сценарии, которые могут ограничивать выбор.","Сильное притяжение или зависимый сценарий; важно видеть свободу и согласие.","Фокус на выгоде или статусе может затмить цену выбора.","Что удерживает меня — и какую свободу я могу вернуть?"],
+      ["Башня","ⅩⅥ","Внезапный сдвиг, разрушение непрочной конструкции и необходимость увидеть правду.","Резкий разговор или кризис показывает то, что нельзя дальше замалчивать.","Изменение плана или системы; сначала позаботьтесь о безопасности и опоре.","На чём держалась эта конструкция — и что осталось надёжным?"],
+      ["Звезда","ⅩⅦ","Надежда, восстановление и тихая вера в возможность продолжать.","Искренность, уязвимость и пространство для постепенного доверия.","Долгосрочное видение и возвращение вдохновения после трудного периода.","Что возвращает мне надежду и ощущение направления?"],
+      ["Луна","ⅩⅧ","Неясность, сильное воображение и чувства, которым нужны время и проверка фактами.","Чувствительность и недосказанность; лучше уточнять, чем додумывать за другого.","Неопределённость в данных или ожиданиях; перепроверьте детали и не спешите.","Что я знаю наверняка, а что пока только предполагаю?"],
+      ["Солнце","ⅩⅨ","Ясность, жизненная энергия и радость от открытого, видимого результата.","Тепло, прямота и радость совместности.","Успех, признание или ясное понимание того, что уже работает.","Что получилось — и как я могу это отметить?"],
+      ["Суд","ⅩⅩ","Переоценка, пробуждение и возможность ответить на зов важного дела.","Честный разговор о прошлом и решение, хотите ли вы строить дальше.","Подведение итогов и осмысленный новый этап в призвании или работе.","Какой вывод из прошлого я готов применить теперь?"],
+      ["Мир","ⅩⅩⅠ","Завершение цикла, целостность и готовность перейти к следующему горизонту.","Зрелая взаимность и ощущение, что важный этап пройден вместе.","Завершённый проект, достигнутая цель и признание проделанной работы.","Что я могу завершить с благодарностью, прежде чем начать новое?"]
+    ];
+
+    const suits = [
+      {
+        name: "Жезлы", symbol: "♧", cards: [
+          ["Туз Жезлов","Искра вдохновения и начало энергичного дела.","Взаимная искра и интерес к новому опыту.","Зарождение идеи; превратите вдохновение в первый конкретный шаг.","Что меня по-настоящему зажигает?"],
+          ["Двойка Жезлов","Планирование и взгляд за пределы привычного.","Обсуждение общего направления и будущих желаний.","Выбор стратегии или оценка новых возможностей.","Какой горизонт я хочу исследовать?"],
+          ["Тройка Жезлов","Расширение планов и ожидание первых результатов.","Поддержка роста друг друга и планы на будущее.","Первые плоды усилий; полезно оценить, что масштабировать.","Что уже отправлено в путь и чего я жду?"],
+          ["Четвёрка Жезлов","Праздник, опора и радость достигнутого этапа.","Тёплая близость, встреча или общий повод для радости.","Удачное завершение этапа или сплочённая команда.","Как отметить то, что уже получилось?"],
+          ["Пятёрка Жезлов","Соревнование, разногласия и столкновение разных энергий.","Спор из-за различий; состязание не обязательно означает вражду.","Конкуренция или мозговой штурм; направьте спор на решение задачи.","Это полезное соревнование или бесполезная борьба?"],
+          ["Шестёрка Жезлов","Признание, уверенность и заметная победа.","Признание усилий и открытая поддержка.","Успех, видимый окружающим; важно разделить заслуги справедливо.","Как я могу принять признание и не забыть команду?"],
+          ["Семёрка Жезлов","Защита позиции и готовность отстоять важные границы.","Умение уважительно защищать свои потребности.","Отстаивание идеи или места в конкурентной среде.","За что стоит стоять — и где не нужно доказывать?"],
+          ["Восьмёрка Жезлов","Быстрые события, сообщения и ускорение процесса.","Оживлённое общение или стремительное развитие событий.","Новости, быстрый прогресс и короткие сроки; держите фокус.","Какой ответ или действие не стоит откладывать?"],
+          ["Девятка Жезлов","Стойкость после испытаний и осторожность, основанная на опыте.","Потребность в доверии после прошлых обид; двигайтесь постепенно.","Последний рывок и защита достигнутого без отказа от отдыха.","Как сохранить границы и не закрыться от поддержки?"],
+          ["Десятка Жезлов","Большая нагрузка и ответственность, которую пора распределить.","Перегрузка обязанностями; попросить о помощи — не слабость.","Слишком много задач; делегируйте, пересмотрите приоритеты.","Что я несу один, хотя могу разделить?"],
+          ["Паж Жезлов","Любопытство, смелая идея и желание исследовать.","Лёгкое знакомство и открытый интерес без преждевременных обещаний.","Новое обучение, творческий импульс или первые шаги в незнакомом деле.","Чему мне интересно научиться прямо сейчас?"],
+          ["Рыцарь Жезлов","Энергичный порыв, смелость и тяга к переменам.","Страстное сближение; важно сверять порыв с ожиданиями обоих.","Быстрый старт и решительность; проверьте, хватает ли устойчивости.","Как действовать смело, но не сгореть на старте?"],
+          ["Королева Жезлов","Уверенность, теплота и способность вдохновлять своим примером.","Самостоятельность, обаяние и радость от взаимного уважения.","Творческое лидерство и умение поддержать инициативу команды.","Где я могу проявиться без разрешения окружающих?"],
+          ["Король Жезлов","Видение, лидерство и способность вести дело к большой цели.","Щедрая поддержка и честное лидерство вместо контроля.","Стратегия, предпринимательская энергия и ответственность за направление.","Какую идею я готов вести последовательно?"]
+        ]
+      },
+      {
+        name: "Кубки", symbol: "♡", cards: [
+          ["Туз Кубков","Открытое сердце, эмоциональное обновление и зарождение чувства.","Новая близость, нежность или готовность говорить искренне.","Вдохновляющее сотрудничество или дело, которое эмоционально откликается.","Какое чувство просит внимания, а не оценки?"],
+          ["Двойка Кубков","Взаимность, уважение и встреча на равных.","Взаимное притяжение, союз или примирение через диалог.","Партнёрство с равным обменом и общими интересами.","Где здесь встречаются желания обеих сторон?"],
+          ["Тройка Кубков","Дружба, поддержка круга и совместная радость.","Лёгкость общения, дружеское тепло и общие праздники.","Командная поддержка и результат, которым можно поделиться.","Кто помогает мне чувствовать себя частью круга?"],
+          ["Четвёрка Кубков","Пауза, неудовлетворённость или шанс, который пока не замечен.","Эмоциональная закрытость или потребность понять свои чувства.","Усталость от привычных задач; время пересмотреть мотивацию.","Чего мне не хватает — и замечаю ли я доступную возможность?"],
+          ["Пятёрка Кубков","Разочарование и горе по утраченному, рядом с которым остаётся опора.","Сожаление или обида; важно признать чувства, не сводя к ним всё.","Неудачный результат; извлеките урок и посмотрите, что ещё можно сохранить.","О чём я горюю и какая поддержка всё ещё рядом?"],
+          ["Шестёрка Кубков","Воспоминания, доброта и связь с прошлым опытом.","Ностальгия, доверие или возвращение знакомого человека.","Старый опыт и проверенные связи могут помочь нынешнему делу.","Что из прошлого согревает, а что удерживает?"],
+          ["Семёрка Кубков","Много фантазий и вариантов; полезно отличать мечту от реального плана.","Идеализация или неопределённость желаний требует честности.","Много идей, но не все одинаково осуществимы; выберите критерии.","Что здесь желание, а что подтверждено действиями?"],
+          ["Восьмёрка Кубков","Осознанный уход от того, что больше не наполняет.","Дистанция или завершение связи, если важные потребности не встречены.","Переход от привычной работы к более осмысленному пути.","Что я готов оставить ради более честного пути?"],
+          ["Девятка Кубков","Удовлетворение, чувственная радость и признание своих желаний.","Умение радоваться близости, сохраняя собственную полноту.","Комфортный результат и удовлетворённость достигнутым.","Чего я хочу для себя, не оглядываясь на чужие ожидания?"],
+          ["Десятка Кубков","Эмоциональная гармония, принятие и чувство общего дома.","Тёплая связь, семейная близость или разделённая радость.","Поддерживающая атмосфера и работа, совместимая с важными ценностями.","Как выглядит моё собственное понимание благополучия?"],
+          ["Паж Кубков","Чуткость, воображение и неожиданное эмоциональное послание.","Нежный знак внимания, искреннее извинение или зарождение симпатии.","Творческое предложение и готовность учиться через любопытство.","Как выразить чувство просто и бережно?"],
+          ["Рыцарь Кубков","Романтичный жест, следование идеалу и движение за чувством.","Приглашение, ухаживание или открытое признание в симпатии.","Работа, вдохновлённая ценностями; не забывайте о практической стороне.","Что я идеализирую, а что действительно готов предложить?"],
+          ["Королева Кубков","Сочувствие, интуиция и эмоциональная зрелость.","Эмпатия и глубокое внимание при сохранении личных границ.","Чуткое руководство и понимание человеческой стороны работы.","Как позаботиться о чувствах, не теряя собственных границ?"],
+          ["Король Кубков","Спокойствие среди сильных чувств и доброжелательная мудрость.","Эмоциональная надёжность, сочувствие и зрелый диалог.","Дипломатичное лидерство и самообладание в напряжённой ситуации.","Какой ответ соединит сострадание с ясностью?"]
+        ]
+      },
+      {
+        name: "Мечи", symbol: "⚔", cards: [
+          ["Туз Мечей","Ясная мысль, важная правда и решение, которое проясняет ситуацию.","Честный разговор и точные слова вместо догадок.","Новая идея, анализ или решительный выбор на основе фактов.","Какую правду важно назвать прямо и бережно?"],
+          ["Двойка Мечей","Пауза перед выбором и попытка удержать противоречия.","Трудный разговор откладывается; прислушайтесь к обеим сторонам.","Недостаток данных или конфликт приоритетов; уточните условия.","Какой информации мне не хватает для решения?"],
+          ["Тройка Мечей","Боль, печаль и признание того, что задело сердце.","Обида, разрыв или трудная правда; переживание заслуживает времени.","Разочарование в сотрудничестве; отделите ошибку от личной ценности.","Что ранит меня и где найти бережную поддержку?"],
+          ["Четвёрка Мечей","Передышка, восстановление сил и тишина после напряжения.","Пауза в общении может помочь всё обдумать и успокоиться.","Плановый отдых или временная остановка перед следующим этапом.","Какой отдых действительно поможет восстановиться?"],
+          ["Пятёрка Мечей","Конфликтная победа, после которой стоит оценить цену спора.","Слова могут ранить; важнее ли сейчас доказать правоту, чем понять?","Жёсткая конкуренция или спор; ищите решение, а не унижение.","Какова цена этой победы и можно ли договориться иначе?"],
+          ["Шестёрка Мечей","Переход из сложной ситуации к более спокойным условиям.","Движение от конфликта к ясности, иногда через временную дистанцию.","Смена процесса или команды ради более устойчивой работы.","От чего я отхожу и что беру с собой?"],
+          ["Семёрка Мечей","Стратегия и осторожность; проверьте, не избегаете ли вы прямоты.","Секретность или недоговорённость требуют ясных границ и честности.","Продуманный самостоятельный план; не подменяйте тактикой прозрачность.","Что я пытаюсь обойти вместо того, чтобы обсудить?"],
+          ["Восьмёрка Мечей","Ощущение ограниченности, которое может сужать взгляд на варианты.","Страх мешает говорить о потребностях; ищите безопасный способ начать.","Правила или сомнения кажутся стеной; уточните реальные ограничения.","Какие ограничения фактические, а какие держатся на тревоге?"],
+          ["Девятка Мечей","Тревожные мысли, вина или бессонные переживания; мысль не всегда факт.","Беспокойство о близости; полезно делиться переживаниями, не обвиняя.","Стресс из-за задач; разбейте проблему на шаги и попросите поддержки.","Что я знаю точно, а что воображение рисует ночью?"],
+          ["Десятка Мечей","Болезненное завершение и предел ситуации; дальше можно восстанавливаться.","Признание конца прежней динамики и забота о себе после боли.","Окончание проекта или подхода; сначала восстановите силы, затем решайте.","Что закончилось — и какой первый шаг поможет восстановиться?"],
+          ["Паж Мечей","Любознательность, наблюдательность и желание задать точный вопрос.","Осторожное знакомство и прямые вопросы без поспешных выводов.","Исследование, обучение и сбор данных; проверяйте источники.","Что я могу узнать, прежде чем делать вывод?"],
+          ["Рыцарь Мечей","Быстрое решение и напор; ясность полезна, если не превращается в резкость.","Прямота и быстрые реакции требуют уважения к чувствам собеседника.","Срочная задача или решительная защита идеи; сверяйте факты и тон.","Как сказать это ясно, не причиняя лишней боли?"],
+          ["Королева Мечей","Ясное суждение, независимость и умение говорить по существу.","Честные границы и зрелая прямота без холодного наказания.","Компетентная оценка, точная коммуникация и независимое решение.","Что покажут факты, если отделить их от надежд?"],
+          ["Король Мечей","Принципиальность, логика и ответственность за справедливое решение.","Честный разговор и договорённости, которые уважают обе стороны.","Стратегическое мышление, правила и взвешенное профессиональное суждение.","Какие принципы должны направлять моё решение?"]
+        ]
+      },
+      {
+        name: "Пентакли", symbol: "◇", cards: [
+          ["Туз Пентаклей","Практическая возможность, из которой может вырасти устойчивый результат.","Надёжный знак внимания и готовность вкладываться делом.","Новый доход, проект или полезный навык; проверьте условия и ресурсы.","Какую реальную возможность стоит взрастить?"],
+          ["Двойка Пентаклей","Гибкость и баланс нескольких дел, пока обстоятельства меняются.","Поиск равновесия между отношениями и другими обязанностями.","Управление временем и бюджетом; оставьте запас на неожиданности.","Что можно упростить, чтобы удержать равновесие?"],
+          ["Тройка Пентаклей","Мастерство, сотрудничество и признание вклада каждого.","Совместное строительство отношений через внимание и договорённости.","Командная работа, обучение ремеслу и уважение к компетенциям.","У кого стоит учиться и какой вклад я приношу?"],
+          ["Четвёрка Пентаклей","Стремление сохранить ресурсы; важно не спутать опору с зажимом.","Потребность в безопасности; близость растёт там, где есть доверие.","Бережливость и контроль ресурсов; проверьте, не мешает ли страх росту.","Что я защищаю — и могу ли делиться безопасно?"],
+          ["Пятёрка Пентаклей","Период нехватки или отчуждения; помощь и поддержка могут быть ближе, чем кажется.","Ощущение одиночества в трудный момент; важно попросить о поддержке.","Финансовая или рабочая нестабильность; ищите доступные ресурсы и союзников.","К кому я могу обратиться, вместо того чтобы справляться в одиночку?"],
+          ["Шестёрка Пентаклей","Обмен, щедрость и внимание к равновесию между давать и принимать.","Взаимная поддержка и уважение к ресурсам каждого.","Помощь, оплата или наставничество; условия обмена должны быть ясны.","Равен ли наш обмен и могу ли я свободно принять помощь?"],
+          ["Семёрка Пентаклей","Терпение, оценка промежуточных результатов и уход за долгим процессом.","Отношения развиваются постепенно; важно замечать реальные усилия.","Долгосрочный проект требует пересмотра темпа и ожиданий.","Что растёт благодаря моим усилиям, а что стоит изменить?"],
+          ["Восьмёрка Пентаклей","Практика, внимание к мастерству и постепенное совершенствование.","Забота проявляется в маленьких последовательных действиях.","Обучение ремеслу и качество работы, созданное повторением.","Какой навык улучшится от регулярной практики?"],
+          ["Девятка Пентаклей","Самостоятельность, комфорт и удовольствие от собственных достижений.","Ценность личной опоры и близость без утраты независимости.","Профессиональная компетентность и заслуженная устойчивость.","Что я создал сам и как могу этим насладиться?"],
+          ["Десятка Пентаклей","Долгосрочная устойчивость, наследие и общий фундамент.","Семейные традиции и планы, где важны потребности поколений.","Долговечный результат, ресурсы и надёжная структура.","Какое наследие или основу я хочу создать?"],
+          ["Паж Пентаклей","Практическое любопытство и готовность учиться через конкретные шаги.","Надёжное начало связи и интерес, подтверждённый вниманием.","Учёба, стажировка или новая цель; начните с выполнимого плана.","Какой маленький навык даст мне большую опору?"],
+          ["Рыцарь Пентаклей","Терпение, надёжность и медленное, но последовательное движение.","Преданность, выраженная поступками и предсказуемой заботой.","Планомерная работа; стабильный темп помогает довести дело до конца.","Какой ритм позволит мне продолжать, а не выгореть?"],
+          ["Королева Пентаклей","Практическая забота, щедрость и умение поддерживать устойчивый быт.","Тепло в повседневных поступках и забота без самопожертвования.","Организация ресурсов и поддержка команды с реалистичным подходом.","Как создать уют и опору, не забывая о собственных силах?"],
+          ["Король Пентаклей","Надёжность, зрелое управление ресурсами и устойчивый результат.","Ответственность и безопасность, подкреплённые поступками.","Долгосрочное управление, финансовая дисциплина и практическое лидерство.","Как превратить достигнутое в устойчивую основу?"]
+        ]
+      }
+    ];
+
+    const allCards = major.map((card, index) => ({
+      name: card[0], symbol: card[1], meaning: card[2], love: card[3], work: card[4], reflection: card[5],
+      group: "major", category: "Старшие арканы", number: String(index).padStart(2, "0")
+    }));
+    suits.forEach(suit => suit.cards.forEach((card, index) => allCards.push({
+      name: card[0], symbol: suit.symbol, meaning: card[1], love: card[2], work: card[3], reflection: card[4],
+      group: suit.name, category: suit.name, number: `${String(index + 1).padStart(2, "0")} · ${suit.name}`
+    })));
+
+    const yesNoByName = new Map();
+    function assignAnswer(verdict, names) {
+      names.split("|").forEach(name => yesNoByName.set(name, verdict));
+    }
+
+    assignAnswer("Да", "Маг|Императрица|Император|Колесница|Солнце|Мир|Туз Жезлов|Четвёрка Жезлов|Шестёрка Жезлов|Восьмёрка Жезлов|Королева Жезлов|Король Жезлов|Туз Кубков|Двойка Кубков|Девятка Кубков|Десятка Кубков|Король Кубков|Туз Мечей|Король Мечей|Туз Пентаклей|Тройка Пентаклей|Восьмёрка Пентаклей|Девятка Пентаклей|Десятка Пентаклей|Рыцарь Пентаклей|Королева Пентаклей|Король Пентаклей");
+    assignAnswer("Скорее да", "Шут|Иерофант|Влюблённые|Сила|Справедливость|Умеренность|Звезда|Суд|Двойка Жезлов|Тройка Жезлов|Семёрка Жезлов|Девятка Жезлов|Паж Жезлов|Рыцарь Жезлов|Тройка Кубков|Шестёрка Кубков|Паж Кубков|Рыцарь Кубков|Королева Кубков|Шестёрка Мечей|Паж Мечей|Рыцарь Мечей|Королева Мечей|Двойка Пентаклей|Шестёрка Пентаклей|Семёрка Пентаклей|Паж Пентаклей");
+    assignAnswer("Пока неясно", "Верховная Жрица|Колесо Фортуны|Луна|Четвёрка Кубков|Семёрка Кубков|Двойка Мечей");
+    assignAnswer("Скорее нет", "Дьявол|Пятёрка Жезлов|Десятка Жезлов|Пятёрка Кубков|Пятёрка Мечей|Семёрка Мечей|Восьмёрка Мечей|Девятка Мечей|Четвёрка Пентаклей");
+    assignAnswer("Нет", "Смерть|Башня|Отшельник|Повешенный|Восьмёрка Кубков|Тройка Мечей|Десятка Мечей|Четвёрка Мечей|Пятёрка Пентаклей");
+
+    if (yesNoByName.size !== allCards.length || allCards.some(card => !yesNoByName.has(card.name))) {
+      throw new Error("Для каждой карты Таро должен быть задан символический ориентир «да / нет».");
+    }
+    allCards.forEach(card => { card.yesNo = yesNoByName.get(card.name); });
+
+    const grid = document.getElementById("card-grid");
+    const search = document.getElementById("card-search");
+    const count = document.getElementById("result-count");
+    const dialog = document.getElementById("card-dialog");
+    const filterButtons = Array.from(document.querySelectorAll(".filter"));
+    const guideTab = document.getElementById("guide-tab");
+    const questionTab = document.getElementById("question-tab");
+    const guideView = document.getElementById("guide-view");
+    const questionView = document.getElementById("question-view");
+    const carousel = document.getElementById("card-carousel");
+    let wheelCards = [];
+    const confirmCardButton = document.getElementById("confirm-card");
+    const questionInput = document.getElementById("visitor-question");
+    const readingArea = document.getElementById("reading-area");
+    const readingResult = document.getElementById("reading-result");
+    const wheelStage = document.getElementById("wheel-stage");
+    const cardNavigationButtons = [
+      document.getElementById("card-previous"),
+      document.getElementById("card-next")
+    ];
+    let activeFilter = "all";
+    let wheelPosition = 0;
+    let wheelRotation = 0;
+    let isSpinning = false;
+    let touchStartX = null;
+    let touchStartY = null;
+    let touchStartRotation = 0;
+
+    function renderCards() {
+      const query = search.value.trim().toLocaleLowerCase("ru");
+      const visible = allCards.filter(card => {
+        const inGroup = activeFilter === "all" || card.group === activeFilter || card.group === "major" && activeFilter === "major";
+        const text = `${card.name} ${card.meaning} ${card.love} ${card.work} ${card.reflection} ${card.category}`.toLocaleLowerCase("ru");
+        return inGroup && (!query || text.includes(query));
+      });
+
+      grid.replaceChildren();
+      count.textContent = `Показано: ${visible.length} из ${allCards.length}`;
+
+      if (!visible.length) {
+        const empty = document.createElement("div");
+        empty.className = "empty-state";
+        const title = document.createElement("strong");
+        title.textContent = "Ничего не найдено";
+        const hint = document.createElement("span");
+        hint.textContent = "Попробуйте другое слово или выберите другую группу карт.";
+        empty.append(title, hint);
+        grid.append(empty);
+        return;
+      }
+
+      visible.forEach(card => {
+        const button = document.createElement("button");
+        button.className = "tarot-tile";
+        button.type = "button";
+        button.setAttribute("aria-label", `${card.name}. Открыть значение`);
+        button.addEventListener("click", () => openCard(card));
+
+        const top = document.createElement("span");
+        top.className = "tile-top";
+        const number = document.createElement("span");
+        number.textContent = card.number;
+        const category = document.createElement("span");
+        category.className = "tile-category";
+        category.textContent = card.category;
+        top.append(number, category);
+
+        const name = document.createElement("strong");
+        name.textContent = card.name;
+        const hint = document.createElement("span");
+        hint.className = "tile-hint";
+          hint.textContent = `${card.meaning} Ориентир «да / нет»: ${card.yesNo.toLocaleLowerCase("ru")}.`;
+        button.append(top, name, hint);
+        grid.append(button);
+      });
+    }
+
+    function addMeaning(label, text) {
+      const item = document.createElement("section");
+      item.className = "meaning-item";
+      const heading = document.createElement("h3");
+      heading.textContent = label;
+      const paragraph = document.createElement("p");
+      paragraph.textContent = text;
+      item.append(heading, paragraph);
+      document.getElementById("meaning-list").append(item);
+    }
+
+    function openCard(card) {
+      document.getElementById("dialog-number").textContent = card.number;
+      document.getElementById("dialog-title").textContent = card.name;
+      document.getElementById("dialog-category").textContent = card.category;
+      document.getElementById("dialog-meaning").textContent = card.meaning;
+      document.getElementById("dialog-answer").textContent = card.yesNo;
+      const list = document.getElementById("meaning-list");
+      list.replaceChildren();
+      addMeaning("Отношения", card.love);
+      addMeaning("Работа и дела", card.work);
+      addMeaning("Вопрос для себя", card.reflection);
+      dialog.showModal();
+    }
+
+    function switchView(view) {
+      const showQuestion = view === "question";
+      if (guideView.hidden !== showQuestion) window.scrollTo({ top: 0, behavior: "auto" });
+      guideView.hidden = showQuestion;
+      questionView.hidden = !showQuestion;
+      guideTab.setAttribute("aria-selected", String(!showQuestion));
+      questionTab.setAttribute("aria-selected", String(showQuestion));
+      guideTab.tabIndex = showQuestion ? -1 : 0;
+      questionTab.tabIndex = showQuestion ? 0 : -1;
+    }
+
+    function renderWheelCards() {
+      const step = 360 / allCards.length;
+      const fragment = document.createDocumentFragment();
+      allCards.forEach((card, index) => {
+        const back = document.createElement("div");
+        back.className = "wheel-card is-back";
+        back.setAttribute("aria-hidden", "true");
+        back.style.setProperty("--angle", `${index * step}deg`);
+        fragment.append(back);
+      });
+      wheelStage.replaceChildren(fragment);
+      wheelCards = Array.from(wheelStage.querySelectorAll(".wheel-card"));
+      document.getElementById("carousel-count").textContent = `${allCards.length} карт`;
+      carousel.setAttribute("aria-label", `Закрытая колода из ${allCards.length} карт`);
+      wheelStage.style.transform = `rotate(${wheelRotation}deg)`;
+    }
+
+    function normalizeAngle(angle) {
+      return (angle % 360 + 360) % 360;
+    }
+
+    function browseByDegrees(degrees) {
+      if (isSpinning) return;
+      wheelRotation += degrees;
+      wheelPosition = Math.round(normalizeAngle(wheelRotation) / (360 / allCards.length)) % allCards.length;
+      wheelStage.style.transform = `rotate(${wheelRotation}deg)`;
+      readingResult.hidden = true;
+      confirmCardButton.textContent = "Вытянуть случайную карту";
+      document.getElementById("carousel-status").textContent = "Колода прокручена; все карты остаются закрытыми.";
+      document.getElementById("wheel-announcer").textContent = `Колода прокручена. Все ${allCards.length} карты остаются закрытыми.`;
+    }
+
+    function browseCards(direction, amount = 1) {
+      const steps = Math.max(1, Math.min(Math.trunc(amount), allCards.length));
+      browseByDegrees(direction * steps * (360 / allCards.length));
+    }
+
+    function browseToPosition(position) {
+      let distance = (position - wheelPosition + allCards.length) % allCards.length;
+      if (distance > allCards.length / 2) distance -= allCards.length;
+      if (distance) browseCards(Math.sign(distance), Math.abs(distance));
+    }
+
+    const readingAreas = {
+      love: { label: "Отношения", cardField: "love" },
+      work: { label: "Работа и дела", cardField: "work" },
+      reflection: { label: "Личный путь", cardField: "reflection" }
+    };
+
+    const answerContext = {
+      love: "Ориентир не раскрывает чувства другого человека. Сверьте тему карты с взаимностью, прямым разговором и тем, уважаются ли границы обеих сторон.",
+      work: "Ориентир не предсказывает результат. Сверьте тему карты с проверяемыми фактами, сроками, ресурсами и рисками решения.",
+      reflection: "Ориентир не решает за вас. Используйте тему карты, чтобы проверить свои ценности, потребности и следующий посильный шаг."
+    };
+
+    function randomUint32() {
+      const value = new Uint32Array(1);
+      window.crypto.getRandomValues(value);
+      return value[0];
+    }
+
+    function uniformRandomCardIndex(nextUint32 = randomUint32) {
+      const range = 0x100000000;
+      const limit = range - range % allCards.length;
+      let value;
+      do {
+        value = nextUint32();
+      } while (value >= limit);
+      return value % allCards.length;
+    }
+
+    function waitForWheelStop() {
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        return Promise.resolve();
+      }
+      return new Promise(resolve => {
+        const timer = window.setTimeout(finish, 2100);
+        function finish(event) {
+          if (event && (event.target !== wheelStage || event.propertyName !== "transform")) return;
+          window.clearTimeout(timer);
+          wheelStage.removeEventListener("transitionend", finish);
+          resolve();
+        }
+        wheelStage.addEventListener("transitionend", finish);
+      });
+    }
+
+    async function confirmSelectedCard() {
+      if (isSpinning) return;
+      const question = questionInput.value.trim();
+      if (!question) {
+        questionInput.setCustomValidity("Напишите вопрос перед тем, как вытянуть карту.");
+        questionInput.reportValidity();
+        return;
+      }
+      questionInput.setCustomValidity("");
+
+      const selectedArea = readingAreas[readingArea.value];
+      if (!selectedArea) throw new Error("Неизвестная сфера для трактовки карты.");
+
+      const drawnIndex = uniformRandomCardIndex();
+      const card = allCards[drawnIndex];
+      if (typeof card[selectedArea.cardField] !== "string" || !card[selectedArea.cardField].trim()) {
+        throw new Error(`Не удалось найти трактовку карты «${card.name}» для выбранной сферы.`);
+      }
+
+      isSpinning = true;
+      readingResult.hidden = true;
+      confirmCardButton.disabled = true;
+      questionInput.disabled = true;
+      readingArea.disabled = true;
+      confirmCardButton.textContent = "Колесо вращается…";
+      cardNavigationButtons.forEach(button => { button.disabled = true; });
+      document.getElementById("carousel-status").textContent = "Колесо вращается и останавливается на случайной карте из всей колоды…";
+      document.getElementById("wheel-announcer").textContent = "Колесо вращается. Карта ещё не открыта.";
+      wheelStage.classList.add("is-spinning");
+      void wheelStage.offsetWidth;
+      const targetAngle = normalizeAngle(-drawnIndex * (360 / allCards.length));
+      const remainingAngle = normalizeAngle(targetAngle - normalizeAngle(wheelRotation));
+      wheelRotation += 5 * 360 + remainingAngle;
+      wheelPosition = drawnIndex;
+      wheelStage.style.transform = `rotate(${wheelRotation}deg)`;
+
+      try {
+        await waitForWheelStop();
+      } finally {
+        wheelStage.classList.remove("is-spinning");
+        isSpinning = false;
+        confirmCardButton.disabled = false;
+        questionInput.disabled = false;
+        readingArea.disabled = false;
+        cardNavigationButtons.forEach(button => { button.disabled = false; });
+      }
+
+      document.getElementById("reading-result-title").textContent = `Ваша карта — ${card.name}`;
+      document.getElementById("result-question").textContent = `Ваш вопрос: «${question}»`;
+      document.getElementById("result-answer").textContent = `Условный ориентир карты «да / нет»: ${card.yesNo}.`;
+      document.getElementById("result-meaning").textContent = `Справочное значение · ${selectedArea.label}: ${card[selectedArea.cardField]}`;
+      document.getElementById("result-answer-context").textContent = answerContext[readingArea.value];
+      confirmCardButton.textContent = "Вытянуть ещё одну карту";
+      document.getElementById("wheel-instruction").textContent = "Колесо остановилось. Вытянутая карта показана ниже.";
+      document.getElementById("carousel-status").textContent = "Колесо остановилось. Открыта случайная карта из всех 78.";
+      document.getElementById("wheel-announcer").textContent = `Колесо остановилось. Открыта карта «${card.name}».`;
+      readingResult.hidden = false;
+      readingResult.scrollIntoView({
+        behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
+        block: "nearest"
+      });
+    }
+
+    guideTab.addEventListener("click", () => switchView("guide"));
+    questionTab.addEventListener("click", () => switchView("question"));
+    document.querySelectorAll(".view-tab").forEach((tab, index, tabs) => tab.addEventListener("keydown", event => {
+      const next = event.key === "ArrowRight" || event.key === "ArrowDown" ? (index + 1) % tabs.length
+        : event.key === "ArrowLeft" || event.key === "ArrowUp" ? (index - 1 + tabs.length) % tabs.length
+          : event.key === "Home" ? 0
+            : event.key === "End" ? tabs.length - 1
+              : -1;
+      if (next < 0) return;
+      event.preventDefault();
+      tabs[next].focus();
+      tabs[next].click();
+    }));
+    document.querySelectorAll(".nav-links a, .brand").forEach(link => link.addEventListener("click", () => switchView("guide")));
+
+    document.getElementById("card-previous").addEventListener("click", () => browseCards(-1));
+    document.getElementById("card-next").addEventListener("click", () => browseCards(1));
+    carousel.addEventListener("keydown", event => {
+      if (event.key === "ArrowLeft" || event.key === "ArrowRight" || event.key === "Home" || event.key === "End") {
+        event.preventDefault();
+        if (event.key === "Home") {
+          browseToPosition(0);
+        } else if (event.key === "End") {
+          browseToPosition(allCards.length - 1);
+        } else {
+          browseCards(event.key === "ArrowLeft" ? -1 : 1);
+        }
+      }
+    });
+    carousel.addEventListener("wheel", event => {
+      event.preventDefault();
+      const movement = Math.abs(event.deltaY) >= Math.abs(event.deltaX) ? event.deltaY : event.deltaX;
+      browseByDegrees(movement * .18);
+    }, { passive: false });
+    carousel.addEventListener("pointerdown", event => {
+      if (event.pointerType !== "touch") return;
+      touchStartX = event.clientX;
+      touchStartY = event.clientY;
+      touchStartRotation = wheelRotation;
+      wheelStage.classList.add("is-dragging");
+    });
+    carousel.addEventListener("pointermove", event => {
+      if (event.pointerType !== "touch" || touchStartX === null) return;
+      if (Math.abs(event.clientY - touchStartY) < Math.abs(event.clientX - touchStartX)) {
+        browseByDegrees(event.clientX - touchStartX + touchStartRotation - wheelRotation);
+      }
+    });
+    carousel.addEventListener("pointerup", event => {
+      if (event.pointerType !== "touch" || touchStartX === null) return;
+      wheelStage.classList.remove("is-dragging");
+      touchStartX = null;
+      touchStartY = null;
+    });
+    carousel.addEventListener("pointercancel", () => {
+      wheelStage.classList.remove("is-dragging");
+      touchStartX = null;
+      touchStartY = null;
+    });
+    function clearConfirmedCard() {
+      readingResult.hidden = true;
+      if (!isSpinning) {
+        confirmCardButton.textContent = "Вытянуть случайную карту";
+        document.getElementById("wheel-instruction").textContent = "Колода закрыта. Нажмите кнопку, чтобы вытянуть случайную карту.";
+        document.getElementById("carousel-status").textContent = "Данные запроса изменены. Вытяните карту, чтобы увидеть новый результат.";
+      }
+    }
+
+    questionInput.addEventListener("input", () => {
+      questionInput.setCustomValidity("");
+      clearConfirmedCard();
+    });
+    readingArea.addEventListener("change", clearConfirmedCard);
+    confirmCardButton.addEventListener("click", confirmSelectedCard);
+
+    filterButtons.forEach(button => button.addEventListener("click", () => {
+      activeFilter = button.dataset.filter;
+      filterButtons.forEach(item => item.setAttribute("aria-pressed", String(item === button)));
+      renderCards();
+    }));
+
+    search.addEventListener("input", renderCards);
+    document.querySelector(".dialog-close").addEventListener("click", () => dialog.close());
+    dialog.addEventListener("click", event => {
+      if (event.target === dialog) dialog.close();
+    });
+
+    renderCards();
+    renderWheelCards();
+  </script>
+</body>
+</html>
